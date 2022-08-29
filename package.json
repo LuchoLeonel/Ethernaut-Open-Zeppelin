@@ -38,5 +38,9 @@
   },
   "lint-staged": {
     "*.sol": "forge fmt"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.7.3",
+    "@openzeppelin/contracts-ethereum-package": "^3.0.0"
   }
 }

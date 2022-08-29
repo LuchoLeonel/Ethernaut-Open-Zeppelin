@@ -2,12 +2,13 @@
 pragma solidity >=0.8.4 <0.9.0;
 
 import 'forge-std/Script.sol';
-import 'contracts/Greeter.sol';
+import 'contracts/HackReentrancy.sol';
+import 'isolmate/interfaces/tokens/IERC20.sol';
 
 abstract contract Deploy is Script {
-    function _deploy(string memory greeting, IERC20 token) internal {
+    function _deploy(string memory _greeting, IERC20 _token) internal {
         vm.startBroadcast();
-        new Greeter(greeting, token);
+        new HackReentrance();
         vm.stopBroadcast();
     }
 }
