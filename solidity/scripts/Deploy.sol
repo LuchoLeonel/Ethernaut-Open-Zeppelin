@@ -2,13 +2,13 @@
 pragma solidity >=0.8.0 <0.9.0;
 
 import 'forge-std/Script.sol';
-import 'contracts/Fallout.sol';
+import '../hacks/HackDelegation.sol';
 import 'isolmate/interfaces/tokens/IERC20.sol';
 
 abstract contract Deploy is Script {
     function _deploy(string memory _greeting, IERC20 _token) internal {
         vm.startBroadcast();
-        new Fallout();
+        new HackDelegation();
         vm.stopBroadcast();
     }
 }

