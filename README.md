@@ -99,6 +99,13 @@ Configure the `.env` variables.
 yarn deploy:rinkeby
 ```
 
+
+### Goerly
+
+```bash
+yarn deploy:goerly
+```
+
 ### Mainnet
 
 ```bash

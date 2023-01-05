@@ -1,17 +1,16 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.10; // Latest solidity version
+pragma solidity ^0.8.0; // Latest solidity version
 
 contract Telephone {
+    address public owner;
 
-  address public owner;
-
-  constructor() public {
-    owner = msg.sender;
-  }
-
-  function changeOwner(address _owner) public {
-    if (tx.origin != msg.sender) {
-      owner = _owner;
+    constructor() {
+        owner = msg.sender;
     }
-  }
+
+    function changeOwner(address _owner) public {
+        if (tx.origin != msg.sender) {
+            owner = _owner;
+        }
+    }
 }

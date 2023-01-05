@@ -3,7 +3,7 @@ quote_style = 'single'
 line_length = 120
 
 [profile.default]
-solc = '0.8.14'
+solc = '0.8.0'
 src = 'solidity'
 test = 'solidity/test'
 out = 'out'
