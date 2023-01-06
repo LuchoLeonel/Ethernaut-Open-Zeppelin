@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-
-import 'isolmate/src/token/ERC20.sol';
+/*
+import 'isolmate/tokens/ERC20.sol';
 
  contract NaughtCoin is ERC20 {
 
   // string public constant name = 'NaughtCoin';
-  // string public constant symbol = '0x0';
+  // string public constant symbol = '0x0'; 
   // uint public constant decimals = 18;
   uint public timeLock = block.timestamp + 10 * 365 days;
   uint256 public INITIAL_SUPPLY;
@@ -36,3 +36,4 @@ import 'isolmate/src/token/ERC20.sol';
     }
   } 
 } 
+*/
