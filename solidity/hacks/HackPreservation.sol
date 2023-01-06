@@ -9,7 +9,7 @@ contract HackPreservation {
     // Complete with the instance's address
     Preservation public originalContract = Preservation(0x65Ad08Dd5A6bEF8BB094aDAe5DbBDa91D9785b6F);
     // You're going to fill the second slot with random data
-    address notUsed2 = address(this);
+    address notUsed = address(this);
     // The third one it's going to be your address, so you can override the owner variable
     uint toOverride;
 
