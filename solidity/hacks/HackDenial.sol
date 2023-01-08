@@ -5,7 +5,7 @@ import '../contracts/Denial.sol';
 
 contract HackDenial {
   // Complete with the instance's address
-  Denial public originalContract = Denial(payable(0xD80Da85210307030dc3Da7FfF7533dBDE782C2AE)); 
+  Denial public originalContract = Denial(payable(0x2c1e976FDb29bAAe490Ae0a7F3865A0412147f0D)); 
 
   function setPartner() public {
     // We're gonna set the partner to be this contract
