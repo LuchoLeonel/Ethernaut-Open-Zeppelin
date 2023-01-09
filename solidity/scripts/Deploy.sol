@@ -2,13 +2,13 @@
 pragma solidity >=0.8.0 <0.9.0;
 
 import 'forge-std/Script.sol';
-import '../hacks/HackMagicNumber.sol';
+import '../hacks/HackGatekeeperOne.sol';
 import 'isolmate/interfaces/tokens/IERC20.sol';
 
 abstract contract Deploy is Script {
     function _deploy(string memory _greeting, IERC20 _token) internal {
         vm.startBroadcast();
-        new HackMagicNumber();
+        new HackGatekeeperOne(0x5574de186Dc61B82a99fcBA8bf2D13D509A35A28);
         vm.stopBroadcast();
     }
 }
