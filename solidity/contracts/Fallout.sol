@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0; // Latest solidity version
 
-import 'interfaces/SafeMath.sol';
+import '../interfaces/SafeMath.sol';
 
 contract Fallout {
     using SafeMath for uint256;
