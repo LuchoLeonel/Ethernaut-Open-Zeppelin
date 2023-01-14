@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
-
+/*
 import '../contracts/GoodSamaritan.sol';
 
 // To resolve this callenge I used remix because this compiler only support version 0.8.0
@@ -30,3 +30,4 @@ contract HackGoodSamaritan {
     }
 
 }
+*/

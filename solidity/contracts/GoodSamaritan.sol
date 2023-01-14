@@ -2,7 +2,7 @@
 pragma solidity >=0.8.0 <0.9.0;
 
 import "../helpers/Address.sol";
-
+/*
 contract GoodSamaritan {
     Wallet public wallet;
     Coin public coin;
@@ -101,3 +101,4 @@ contract Wallet {
 interface INotifyable {
     function notify(uint256 amount) external;
 }
+*/
