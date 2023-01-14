@@ -2,13 +2,13 @@
 pragma solidity >=0.8.0 <0.9.0;
 
 import 'forge-std/Script.sol';
-import '../hacks/HackMotorbike.sol';
-import 'isolmate/interfaces/tokens/IERC20.sol';
+import '../hacks/HackGoodSamaritan.sol';
+import '../helpers/IERC20.sol';
 
 abstract contract Deploy is Script {
     function _deploy(string memory _greeting, IERC20 _token) internal {
         vm.startBroadcast();
-        new HackMotorbike(address(uint160(0x0000000000000000000000006d3bd638400e42e1afc8f50765f4d040871e4f65)));
+        new HackGoodSamaritan();
         vm.stopBroadcast();
     }
 }

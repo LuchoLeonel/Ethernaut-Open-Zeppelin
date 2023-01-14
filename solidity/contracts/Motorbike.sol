@@ -14,7 +14,7 @@ contract Motorbike {
     }
     
     // Initializes the upgradeable proxy with an initial implementation specified by `_logic`.
-    constructor(address _logic) public {
+    constructor(address _logic) {
         require(Address.isContract(_logic), "ERC1967: new implementation is not a contract");
         _getAddressSlot(_IMPLEMENTATION_SLOT).value = _logic;
         (bool success,) = _logic.delegatecall(
