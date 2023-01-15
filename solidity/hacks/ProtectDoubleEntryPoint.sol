@@ -39,3 +39,8 @@ contract ProtectDoubleEntryPoint is IDetectionBot {
     }
   }
 }
+
+/*
+  Once we deploy our Detection bot, we're going to call the setDetectionBot function of the Forta contract
+  Only this way our bot is going to be called when we submit the instance 
+*/
